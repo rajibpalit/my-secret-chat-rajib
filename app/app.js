@@ -57,5 +57,10 @@ const handleRequest = async (request) => {
     return await listAddresses(request);
   }
 };
+let port = 7777;
+if (Deno.args.length > 0) {
+  const lastArgument = Deno.args[Deno.args.length - 1];
+  port = Number(lastArgument);
+}
 
-serve(handleRequest, { port: 7777 });
+serve(handleRequest, { port: port });
